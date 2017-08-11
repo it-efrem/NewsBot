@@ -10,7 +10,7 @@ public class News {
     private List<String> arrayWords = new ArrayList<String>();
     private int time, weight;
 
-    News (String caption,String text,String link, int time) {
+    News (String caption, String text, String link, int time) {
         this.caption = caption;
         this.text = text;
         this.link = link;

@@ -5,16 +5,16 @@ import java.util.List;
  * Created by Eugene on 22.07.2017.
  */
 public class News {
-    private String caption, text, link;
+    private String title, description, text, url, tags, date;
     private List<String> imageLinks = new ArrayList<String>();
     private List<String> arrayWords = new ArrayList<String>();
-    private int time, weight;
+    private int subId;
 
-    News (String caption, String text, String link, int time) {
-        this.caption = caption;
-        this.text = text;
-        this.link = link;
-        this.time = time;
+    News (String title, String description, String url, String date) {
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.date = date;
     }
 
     void addImage (String imageLink) {
@@ -26,34 +26,10 @@ public class News {
         return arrayImages;
     }
 
-    String getCaption () { return this.caption; }
+    String getTitle () { return this.title; }
+    String getDescription () { return this.description; }
     String getText () { return this.text; }
-    String getLink () { return this.link; }
-    int getTime () { return this.time; }
-
-    int getWeight () {
-        //Array of words
-        if (arrayWords.isEmpty()){
-            String[] wordsCaption = caption.replaceAll("\\w ", "").toLowerCase().split(" ");
-            String[] wordsText = text.replaceAll("\\w ", "").toLowerCase().split(" ");
-
-            for (String word:
-                    wordsCaption) {
-                arrayWords.add(word);
-            }
-
-            for (String word:
-                    wordsText) {
-                arrayWords.add(word);
-            }
-        }
-
-        //Calc weight
-        for (String word:
-             arrayWords) {
-            weight += Keys.get(word);
-        }
-
-        return this.weight;
-    }
+    String getUrl () { return this.url; }
+    String getTags () { return this.tags; }
+    String getDate () { return this.date; }
 }

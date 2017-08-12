@@ -17,14 +17,14 @@ public class Client {
         try {
             switch (protocol) {
                 case HTTPS:
-                    url = "https://" + url + "/";
+                    url = "https://" + url;
                     urlNew = new URL(url);
 
                     connect = (HttpsURLConnection)urlNew.openConnection();
                     content = getBody(connect);
                 break;
                 case HTTP:
-                    url = "http://" + url + "/";
+                    url = "http://" + url;
                     urlNew = new URL(url);
 
                     connect = (HttpURLConnection)urlNew.openConnection();
@@ -48,7 +48,7 @@ public class Client {
                                 new InputStreamReader(con.getInputStream()));
                 String tempLine, outString = "";
                 while ((tempLine = br.readLine()) != null){
-                    outString += tempLine;
+                    outString += tempLine + "\n";
                 }
                 br.close();
                 return outString;

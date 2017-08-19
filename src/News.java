@@ -10,7 +10,6 @@ public class News {
     private String title, description, url, date;
     private HashSet<String> tagsList = new HashSet<String>();
     private HashSet<String> imageLinks = new HashSet<String>();
-    private List<String> arrayWords = new ArrayList<String>();
     private int subId;
 
     News (String title, String description, String url, String date, HashSet<String> imageLinks, HashSet<String> tagsList) {

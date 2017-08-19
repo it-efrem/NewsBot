@@ -69,7 +69,7 @@ public class Client {
         String charset = null;
 
         //Search for encoding in headers
-        charset = searchCharset ("(charset=)(.{3,16})", contentType.replaceAll("(\")", ""), 2);
+        charset = searchCharset ("(?i)(charset=)(.{3,16})", contentType.replaceAll("(\")", ""), 2);
 
         if (charset == null) {
             //Search for encoding in the body of the document
@@ -77,7 +77,7 @@ public class Client {
             byte[] byteArrayNew = byteArray.toByteArray();
             if (byteArrayNew.length > lineBuf.length) {
                 System.arraycopy(byteArrayNew, 0, lineBuf, 0, lineBuf.length);
-                charset = searchCharset ("(encoding=\")(.{3,16})(\")", new String(lineBuf), 2);
+                charset = searchCharset ("(?i)(encoding=\")(.{3,16})(\")", new String(lineBuf), 2);
             } else {
                 new ErrorLog("The content of the document is too small. \t URL: \t" + url);
             }

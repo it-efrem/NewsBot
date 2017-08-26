@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
  * Created by Eugene on 08.08.2017.
  */
 public class Parse {
-    public static void main (String[] args) {}
-
     private boolean isXML(String document) {
         Matcher match = Pattern.compile(
                 "(?i)(<\\?xml)(.*)" +

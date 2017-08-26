@@ -1,6 +1,6 @@
 # What is NewsBot? 
 [![N|Solid](http://codrob.ru/logoGitHub.png)](http://codrob.ru/summary)
-> The main goal of the project is to create an AI that is not inferior to the speed and accuracy of its work to services such as Yandex and Google News.
+> Develop a news aggregator that uses AI, which is not inferior in quality, speed and accuracy of its work to services such as Yandex.News and Google News
 
 ## NewsBot - this is a set of algorithms that allow:
 ### v 0.1 - Development

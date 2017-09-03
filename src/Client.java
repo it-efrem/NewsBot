@@ -1,6 +1,5 @@
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.regex.Matcher;
@@ -34,7 +33,7 @@ public class Client {
 
                     if (connectHttps.getResponseCode() == 200)
                         return connectHttps;
-                    new ErrorLog("ResponseCode: \t" + connectHttps.getResponseCode() + "\t Url: " + url);
+                    Bot.log.add(Log.Type.Error,"ResponseCode: \t" + connectHttps.getResponseCode() + "\t Url: " + url);
                 break;
                 case HTTP:
                     url = "http://" + url;
@@ -44,13 +43,11 @@ public class Client {
 
                     if (connectHttp.getResponseCode() == 200)
                         return connectHttp;
-                    new ErrorLog("ResponseCode: \t" + connectHttp.getResponseCode() + "\t Url: " + url);
+                    Bot.log.add(Log.Type.Error,"ResponseCode: \t" + connectHttp.getResponseCode() + "\t Url: " + url);
                 break;
             }
-        } catch (MalformedURLException e) {
-            new ErrorLog(e.getMessage());
         } catch (IOException e) {
-            new ErrorLog(e.getMessage());
+            Bot.log.emergencyClosed(e, "Client:URLConnection \t URL:\t"+url);
         }
         return null;
     }
@@ -79,7 +76,7 @@ public class Client {
                 System.arraycopy(byteArrayNew, 0, lineBuf, 0, lineBuf.length);
                 charset = searchCharset ("(?i)(encoding=\")(.{3,16})(\")", new String(lineBuf), 2);
             } else {
-                new ErrorLog("The content of the document is too small. \t URL: \t" + url);
+                Bot.log.add(Log.Type.Error,"The content of the document is too small. \t URL: \t" + url);
             }
         }
 
@@ -102,12 +99,12 @@ public class Client {
                 if (charset != null)
                     return new String(byteArray.toByteArray(), charset);
                 else
-                    new ErrorLog("Undefined encoding \t Url: \t" + url);
+                    Bot.log.add(Log.Type.Error,"Undefined encoding \t Url: \t" + url);
             } catch (IOException e) {
-                new ErrorLog(e.getMessage());
+                Bot.log.emergencyClosed(e, "Client:getBodyDocument \t URL:\t"+url);
             }
         }
-        new ErrorLog("Connection NULL: \t" + url);
+        Bot.log.add(Log.Type.Error,"Connection NULL: \t" + url);
         return null;
     }
 }

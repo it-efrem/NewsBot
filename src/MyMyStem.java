@@ -46,7 +46,7 @@ public class MyMyStem {
         try {
             if (dictGrammar.size() == 0) loadDictGrammar();
         } catch (Exception e) {
-            e.printStackTrace();
+            Bot.log.emergencyClosed(e, "MyMyStem:loadDict");
         }
     }
 
@@ -81,7 +81,8 @@ public class MyMyStem {
             }
             if (countChar == invNoNormWord.length() && wordInDict) {
                 wordInDict = false;
-                countChar = 1;
+                Bot.log.add(Log.Type.AbsentWords, "Norm:\t" + noNormWord);
+                countChar = 0;
             }
         }
         return noNormWord;
